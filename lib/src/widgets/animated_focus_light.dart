@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:showcase/src/shake_animated_widget/shake_widget.dart';
+import 'package:showcase/src/widgets/shake_widget.dart';
 import '../src.dart';
 
 class AnimatedFocusLight extends StatefulWidget {
