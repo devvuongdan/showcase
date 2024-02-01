@@ -30,27 +30,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void getSizeAndPosition({
-    required GlobalKey widgetKey,
-  }) {
-    RenderBox renderBox =
-        widgetKey.currentContext?.findRenderObject() as RenderBox;
-    Size size = renderBox.size;
-    Offset position = renderBox.localToGlobal(Offset.zero);
-
-    print("Kích thước của widget: $size");
-    print("Vị trí trên màn hình: $position");
-  }
-
   final GlobalKey one = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Scaffold(
-          floatingActionButton: FloatingActionButton(onPressed: () {
-            getSizeAndPosition(widgetKey: one);
-          }),
+          floatingActionButton: FloatingActionButton(onPressed: () {}),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -130,31 +116,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     );
-  }
-}
-
-class HolePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()..color = Colors.transparent;
-
-    // Vẽ hình chữ nhật đen để che phủ toàn bộ màn hình
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
-
-    // Tạo một path để vẽ lỗ trống
-    Path path = Path()
-      ..addRect(const Rect.fromLTWH(50, 50, 100, 100))
-      ..fillType = PathFillType.evenOdd;
-
-    // Đặt màu fill cho lỗ trống là màu đen
-    paint.color = Colors.black;
-
-    // Vẽ lỗ trống
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
   }
 }
