@@ -402,6 +402,7 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
                           (_targetPosition?.size.height ?? 0),
                       child: Opacity(
                           opacity: widget.showContent ? 1 : 0,
+                          //todo: đây là hình bàn tay
                           child: ShakeWidget(
                             child: Container(
                               height: 120,
