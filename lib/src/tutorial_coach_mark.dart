@@ -6,7 +6,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:showcase/src/src.dart';
 
-
 class TutorialCoachMark {
   final List<TargetFocus> targets;
   final FutureOr<void> Function(TargetFocus)? onClickTarget;
@@ -30,6 +29,8 @@ class TutorialCoachMark {
   final Widget? skipWidget;
   final bool showSkipInLastTarget;
   final ImageFilter? imageFilter;
+  final FutureOr<void> Function(TargetFocus?)? onClickNext;
+  final FutureOr<void> Function(TargetFocus?)? onClickPre;
 
   OverlayEntry? _overlayEntry;
 
@@ -54,6 +55,8 @@ class TutorialCoachMark {
     this.skipWidget,
     this.showSkipInLastTarget = true,
     this.imageFilter,
+    this.onClickNext,
+    this.onClickPre,
   }) : assert(opacityShadow >= 0 && opacityShadow <= 1);
 
   OverlayEntry _buildOverlay({bool rootOverlay = false}) {
@@ -82,6 +85,8 @@ class TutorialCoachMark {
           rootOverlay: rootOverlay,
           showSkipInLastTarget: showSkipInLastTarget,
           imageFilter: imageFilter,
+          onClickNext: onClickNext,
+          onClickPre: onClickPre,
         );
       },
     );

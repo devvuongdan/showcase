@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:showcase/src/shake_animated_widget/shake_widget.dart';
 import '../src.dart';
 
 class AnimatedFocusLight extends StatefulWidget {
@@ -23,6 +24,9 @@ class AnimatedFocusLight extends StatefulWidget {
   final bool pulseEnable;
   final bool rootOverlay;
   final ImageFilter? imageFilter;
+  final bool showContent;
+  // final FutureOr<void> Function(TargetFocus?)? onClickNext;
+  // final FutureOr<void> Function(TargetFocus?)? onClickPre;
 
   const AnimatedFocusLight({
     Key? key,
@@ -43,6 +47,9 @@ class AnimatedFocusLight extends StatefulWidget {
     this.imageFilter,
     this.pulseEnable = true,
     this.rootOverlay = false,
+    required this.showContent,
+    // this.onClickNext,
+    // this.onClickPre,
   })  : assert(targets.length > 0),
         super(key: key);
 
@@ -384,7 +391,25 @@ class AnimatedPulseFocusLightState extends AnimatedFocusLightState {
                         height: height,
                       ),
                     ),
-                  )
+                  ),
+                  if (_targetFocus.activeHand)
+                    Positioned(
+                      left: (((_targetPosition?.offset.dx ?? 0) +
+                                  (_targetPosition?.size.width ?? 0)) /
+                              2) -
+                          60,
+                      top: (_targetPosition?.offset.dy ?? 0) +
+                          (_targetPosition?.size.height ?? 0),
+                      child: Opacity(
+                          opacity: widget.showContent ? 1 : 0,
+                          child: ShakeWidget(
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              color: Colors.red,
+                            ),
+                          )),
+                    ),
                 ],
               );
             },

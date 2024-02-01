@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import '../src.dart';
+
 class TargetFocus {
   TargetFocus({
     this.identify,
@@ -17,6 +18,7 @@ class TargetFocus {
     this.focusAnimationDuration,
     this.unFocusAnimationDuration,
     this.pulseVariation,
+    this.activeHand = true,
   }) : assert(keyTarget != null || targetPosition != null);
 
   final dynamic identify;
@@ -34,6 +36,7 @@ class TargetFocus {
   final Duration? focusAnimationDuration;
   final Duration? unFocusAnimationDuration;
   final Tween<double>? pulseVariation;
+  final bool activeHand;
 
   @override
   String toString() {
